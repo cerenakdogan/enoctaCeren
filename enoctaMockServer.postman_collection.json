@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "7db1ee44-5551-4629-8e6c-dfb0bc2f43d0",
+		"name": "enoctaMockServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33872884"
+	},
+	"item": [
+		{
+			"name": "viewInvoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"viewInvoice başarılı\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.collectionVariables.set(\"response1\", pm.response.text());\r",
+							"    console.log(\"get request başarılı\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/viewInvoice?barcode={barcode}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"viewInvoice"
+					],
+					"query": [
+						{
+							"key": "barcode",
+							"value": "{barcode}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/viewInvoice?barcode={barcode}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"viewInvoice"
+							],
+							"query": [
+								{
+									"key": "barcode",
+									"value": "{barcode}"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{ InvoiceLink:\n\"http://abc.com/invoice.pdf\", Result: {success: true} }"
+				}
+			]
+		},
+		{
+			"name": "token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{token}"
+				}
+			]
+		},
+		{
+			"name": "sendInvoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"İkinci çağrı başarılı\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.collectionVariables.set(\"response2\", pm.response.text());\r",
+							"    console.log(\"post request başarılı\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{token}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/sendInvoice",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"sendInvoice"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/sendInvoice",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sendInvoice"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{Barcode: {barcode}}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://d6591cd8-7903-445e-b98b-58c9b7823249.mock.pstmn.io"
+		},
+		{
+			"key": "response1",
+			"value": ""
+		},
+		{
+			"key": "response2",
+			"value": ""
+		}
+	]
+}
